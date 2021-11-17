@@ -71,9 +71,15 @@ area_ons <- read_csv(
 
 area_cleaned <- area_ons %>%
   clean_names() %>%
-  mutate(area_sqkm = areachect/100) %>%
-  select(lad18cd, area_sqkm)
-
+  mutate(
+    area_sqkm = areachect/100,
+    coastal = case_when(
+      str_detect(lad18cd, "^N") ~ NA_character_,
+      areaehect == areachect    ~ "Inland",
+      TRUE                      ~ "Coastal"
+    )
+  ) %>%
+  select(lad18cd, area_sqkm, coastal)
 
 weekly_pay_ons <- read_excel(
   here("data/Home Geography Table 8.1a   Weekly pay - Gross 2017.xls"), 
@@ -107,7 +113,9 @@ weekly_pay_cleaned <- weekly_pay_ons %>%
 
 
 life_exp_ons <- read_csv(
-  here("data/life-expectancy-by-local-authority-time-series-v1-filtered-2021-11-11T12-11-26Z.csv")
+  here(
+    "data/life-expectancy-by-local-authority-time-series-v1-filtered-2021-11-11T12-11-26Z.csv"
+  )
 )
 
 life_exp_cleaned <- life_exp_ons %>%
