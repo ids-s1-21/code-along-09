@@ -1,0 +1,53 @@
+---
+title: "Code-along, Week 08: Modelling pubs"
+author: "Alex Homer"
+date: "11 November 2021"
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+This week's data come from the UK's [Office for National Statistics](https://www.ons.gov.uk/) (ONS).  We will be using the following datasets:
+
+* [Public houses and bars by local authority](https://www.ons.gov.uk/businessindustryandtrade/business/activitysizeandlocation/datasets/publichousesandbarsbylocalauthority) (Copyright date: 2018)
+* [Estimates of the population for the UK, England and Wales, Scotland and Northern Ireland ](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland) (Copyright date: 2021)
+* [Earnings and hours worked, place of residence by local authority: ASHE Table 8](https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/placeofresidencebylocalauthorityashetable8) (Copyright date: 2021)
+* [Standard Area Measurements (2018) for Administrative Areas in the United Kingdom](https://geoportal.statistics.gov.uk/datasets/standard-area-measurements-2018-for-administrative-areas-in-the-united-kingdom/about) (Copyright date: 2019)
+* [Life Expectancy by Local Authority](https://www.ons.gov.uk/datasets/life-expectancy-by-local-authority/editions/time-series/versions/1) (Copyright date: 2020)
+
+The data are subject to crown copyright and database rights and are used under the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
+
+```{r load-packages, message = FALSE}
+library(tidyverse)
+library(tidymodels)
+library(here)
+```
+
+## Read data
+
+I've already done some of the cleanup and joining in advance to save time in the live session.  You can see the cleanup script in the "data" folder of this repo.
+
+```{r read-data, message = FALSE}
+pubs_data <- readRDS(here("data/pubs-final.rds"))
+```
+
+Because I put these data together, let's write a data dictionary:
+
+- `area_code`: the [ONS area code](https://en.wikipedia.org/wiki/ONS_coding_system) for each district
+- `area_name`: the name of each district
+- `num_pubs`: the number of pubs in each district (2018)
+- `pop`: the population of each district (2018)
+- `pubs_per_capita`: the number of pubs per person (2018; obtained by dividing `num_pubs` by `pop`)
+- `country`: which UK nation each district belongs to (England, Northern Ireland, Scotland or Wales)
+- `median_pay_2017`: the median weekly pay, in pounds sterling, for residents of each district (2017)
+- `area_sqkm`: the area, in square kilometres, of each district to mean high water level
+- `pop_dens`: the population density (people per square kilometre) of each district (2018; obtained by dividing `pop` by `area_sqkm`)
+- `life_exp_female`, `life_exp_male`: the life expectancy at birth of people born in each district, broken down by binary sex (2016--2018) ^[Sex and gender are, of course, more complicated than that, but the ONS only gives "male" and "female" figures; in the UK all birth certificates have one of these two options recorded.]
+
+## EDA
+
+```{r glimpse}
+glimpse(pubs_data)
+```
+
+We didn't actually have time to do much with this, but we'll come back to it next week!
