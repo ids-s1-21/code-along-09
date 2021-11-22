@@ -104,8 +104,6 @@ shape_data %>%
   theme_minimal()
 ```
 
-![](pubs_files/figure-gfm/map-1.png)<!-- -->
-
 ## EDA
 
 ``` r
@@ -114,18 +112,18 @@ glimpse(pubs_data)
 
     ## Rows: 391
     ## Columns: 12
-    ## $ area_code       <chr> "E06000047", "E06000005", "E06000001", "E06000002", "E~
-    ## $ area_name       <chr> "County Durham", "Darlington", "Hartlepool", "Middlesb~
-    ## $ num_pubs        <dbl> 325, 70, 50, 65, 245, 85, 110, 120, 195, 105, 100, 145~
-    ## $ pop             <dbl> 526980, 106566, 93242, 140545, 320274, 136718, 197213,~
-    ## $ pubs_per_capita <dbl> 0.0006167217, 0.0006568699, 0.0005362390, 0.0004624853~
-    ## $ country         <chr> "England", "England", "England", "England", "England",~
-    ## $ median_pay_2017 <dbl> 439.0, 416.2, 431.6, 364.3, 413.2, 387.6, 435.7, 405.5~
-    ## $ area_sqkm       <dbl> 2231.5422, 197.4758, 93.5595, 53.8888, 5026.2114, 244.~
-    ## $ coastal         <chr> "Coastal", "Inland", "Coastal", "Coastal", "Coastal", ~
-    ## $ pop_dens        <dbl> 236.15059, 539.64081, 996.60644, 2608.05585, 63.72076,~
-    ## $ life_exp_female <dbl> 81.46, 82.39, 81.33, 80.02, 82.71, 81.78, 81.41, 81.43~
-    ## $ life_exp_male   <dbl> 78.24, 78.72, 76.82, 75.27, 79.40, 77.99, 78.14, 77.46~
+    ## $ area_code       <chr> "E06000047", "E06000005", "E06000001", "E06000002", "E…
+    ## $ area_name       <chr> "County Durham", "Darlington", "Hartlepool", "Middlesb…
+    ## $ num_pubs        <dbl> 325, 70, 50, 65, 245, 85, 110, 120, 195, 105, 100, 145…
+    ## $ pop             <dbl> 526980, 106566, 93242, 140545, 320274, 136718, 197213,…
+    ## $ pubs_per_capita <dbl> 0.0006167217, 0.0006568699, 0.0005362390, 0.0004624853…
+    ## $ country         <chr> "England", "England", "England", "England", "England",…
+    ## $ median_pay_2017 <dbl> 439.0, 416.2, 431.6, 364.3, 413.2, 387.6, 435.7, 405.5…
+    ## $ area_sqkm       <dbl> 2231.5422, 197.4758, 93.5595, 53.8888, 5026.2114, 244.…
+    ## $ coastal         <chr> "Coastal", "Inland", "Coastal", "Coastal", "Coastal", …
+    ## $ pop_dens        <dbl> 236.15059, 539.64081, 996.60644, 2608.05585, 63.72076,…
+    ## $ life_exp_female <dbl> 81.46, 82.39, 81.33, 80.02, 82.71, 81.78, 81.41, 81.43…
+    ## $ life_exp_male   <dbl> 78.24, 78.72, 76.82, 75.27, 79.40, 77.99, 78.14, 77.46…
 
 We’re now going to assess the data!
 

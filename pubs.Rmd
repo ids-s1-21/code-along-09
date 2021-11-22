@@ -52,7 +52,7 @@ Because I put these data together, let's write a data dictionary:
 
 It's worth noting that the `coastal` variable doesn't necessarily agree with intuitive definitions of the words "coastal" and "inland", because of the effect of tidal rivers on the data...
 
-```{r map, cache = TRUE, fig.height = 10}
+```{r map, cache = TRUE, eval = FALSE, fig.height = 10}
 shape_data <- read_sf(
   here(
     "data/map/Local_Authority_Districts_(December_2018)_Boundaries_UK_BFC.shp"
@@ -77,4 +77,38 @@ shape_data %>%
 glimpse(pubs_data)
 ```
 
-We're now going to assess the data!
+```{r see-NAs}
+pubs_data %>%
+  summarise(across(everything(), ~sum(is.na(.)), .names = "NAs_{.col}")) %>%
+  select_if(~ sum(.) > 0)
+
+which_nas <- function(var_name) {
+  pubs_data %>%
+    filter(is.na((!!as.symbol(var_name)))) %>%
+    pull(area_name)
+}
+
+which_nas("median_pay_2017")
+which_nas("coastal")
+which_nas("life_exp_female")
+which_nas("life_exp_male")
+```
+
+```{r ggpairs}
+pubs_data %>%
+  filter(!(area_name %in% c("City of London", "Isles of Scilly"))) %>%
+  select(-c(area_code, area_name, coastal, num_pubs, pop)) %>%
+  GGally::ggpairs(aes(colour = country), alpha = 0.5)
+```
+
+```{r pay-model}
+pubs_reduced <- pubs_data %>%
+  filter(!(area_name %in% c("City of London", "Isles of Scilly")))
+
+mod <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(pubs_per_capita ~ median_pay_2017, data = pubs_reduced)
+
+tidy(mod)
+glance(mod)
+```
