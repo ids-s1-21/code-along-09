@@ -357,7 +357,7 @@ We can interpret this as saying that:
 -   for a district with a median pay of £0 per week, the predicted
     number of pubs per capita is 0.001, or one pub per thousand people.
 -   for every pound per week that median pay increases, the predicted
-    number of pubs per capita *decreases* by -0.000000823.
+    number of pubs per capita *decreases* by 0.000000823.
 
 That last number isn’t very human readable. Let’s consider instead the
 number of pubs per 10,000 people. Let’s also consider what happens when
@@ -365,11 +365,11 @@ pay increases by £100 per week. This has the combined effect of
 multiplying the number by 10 000 × 100 = 1 000 000. So we have that
 
 -   for every £100 per week that median pay increases, the predicted
-    number of pubs per capita *decreases* by -0.823.
+    number of pubs per 10,000 people *decreases* by 0.823.
 
 💡 *Is the intercept meaningful here? Note that, since pay can’t be
 negative, a district with median pay of £0 per week must have more than
-half of its population earning £0 per week* 💡
+half of its population earning £0 per week.* 💡
 
 ``` r
 glance(mod)

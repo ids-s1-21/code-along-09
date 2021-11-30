@@ -195,6 +195,7 @@ abs_str <- function(mod_input, term_input, scale = 1) {
     filter(term == term_input) %>%
     pull(estimate) %>%
     magrittr::multiply_by(scale) %>%
+    abs() %>%
     signif(digits = 3) %>%
     format(scientific = FALSE)
 }
@@ -207,7 +208,7 @@ We can interpret this as saying that:
 
 That last number isn't very human readable.  Let's consider instead the number of pubs per 10,000 people.  Let's also consider what happens when pay increases by £100 per week.  This has the combined effect of multiplying the number by $10\,000 \times 100 = 1\,000\,000$.  So we have that
 
-- for every £100 per week that median pay increases, the predicted number of pubs per capita *decreases* by `r abs_str(mod, "median_pay_2017", scale = 1e6)`.
+- for every £100 per week that median pay increases, the predicted number of pubs per 10,000 people *decreases* by `r abs_str(mod, "median_pay_2017", scale = 1e6)`.
 
 `r lightbulb("Is the intercept meaningful here?  Note that, since pay can't be negative, a district with median pay of £0 per week must have more than half of its population earning £0 per week.")`
 
